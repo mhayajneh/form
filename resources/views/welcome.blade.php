@@ -1,96 +1,89 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    <div class="container">
+        <div class="row main">
+            <div style="min-width: 400px;" class="main-login main-center">
+                <form class="" method="post" action="{{route('storeSubmit')}}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="name"  value="{{old('name')}}" placeholder="Enter your Name"/>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="email" class="form-control" name="email" id="email" value="{{old('email')}}"  placeholder="Enter your Email"/>
+                            </div>
+                        </div>
+                    </div>
 
-            .full-height {
-                height: 100vh;
-            }
+                    <div class="form-group">
+                        <label for="carType" class="cols-sm-2 control-label">Car type</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="carType"  value="{{old('carType')}}" placeholder="Enter your car type"/>
+                            </div>
+                        </div>
+                    </div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="cols-sm-2 control-label">Date of birth</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="date" class="form-control" name="dateOfBirth" value="{{old('dateOfBirth')}}"   placeholder="Enter your date of birth"/>
+                            </div>
+                        </div>
+                    </div>
 
-            .position-ref {
-                position: relative;
-            }
+                    <div class="form-group">
+                        <label for="major" class="cols-sm-2 control-label">Major</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="major" value="{{old('major')}}"   placeholder="Enter your major"/>
+                            </div>
+                        </div>
+                    </div>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                    <div class="form-group">
+                        <label for="number" class="cols-sm-2 control-label">Number</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="number" value="{{old('number')}}"   placeholder="Enter your number"/>
+                            </div>
+                        </div>
+                    </div>
 
-            .content {
-                text-align: center;
-            }
+                    <div class="form-group">
+                        <label for="address" class="cols-sm-2 control-label">Address</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="address" value="{{old('address')}}"  placeholder="Enter your address"/>
+                            </div>
+                        </div>
+                    </div>
 
-            .title {
-                font-size: 84px;
-            }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                    <div class="form-group ">
+                        <button  type="submit"  class="btn btn-primary btn-lg btn-block login-button">Save</button>
+                    </div>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </form>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
